@@ -1,0 +1,4 @@
+baseurl: "http://go.lad.nu"
+languageCode: "en-us"
+title: "Go Lad"
+publishdir: "../"
