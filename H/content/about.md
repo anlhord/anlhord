@@ -1,30 +1,14 @@
 +++
-title = "About Hugo"
-date = "2014-04-09"
+title = "About Go Lad News"
+date = "2015-01-18T20:55:26+01:00"
 menu = "main"
 +++
 
-Hugo is a static site engine written in go.
+Opinions expressed are solely my own and published in the hope they are useful.
+All criticism/review is meant to be constructive.
+Copyrighted materials in quotes, code snippets, images are copyrighted by the respective authors.
+All original code is provided under version 2 of the GNU Public License (GPLv2), unless otherwise noted.
 
-
-It makes use of a variety of open source projects including:
-
-* [Cobra](http://github.com/spf13/cobra)
-* [Viper](http://github.com/spf13/viper)
-* [J Walter Weatherman](http://github.com/spf13/jWalterWeatherman)
-* [Cast](http://github.com/spf13/cast)
-
-Learn more and contribute on [GitHub](https://github.com/spf13).
-
-## Setup
-
-Some fun facts about [Hugo](http://hugo.spf13.com)
-
-* Built in [Go](http://golang.org)
-* Loosely inspired by [Jekyll](http://jekyllrb.com)
-* Primarily developed by [spf13](http://spf13.com) on the train while commuting to and from Manhattan.
-* Coded in [Vim](http://vim.org) using [spf13-vim](http://vim.spf13.com)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/spf13/hugo/issues/new) or [ask me on Twitter](https://twitter.com/spf13).
+The Go gopher logo was designed [by Renée French](http://reneefrench.blogspot.com/) and is provided under the [Creative Commons Attribution 3.0 license](http://creativecommons.org/licenses/by/3.0/).
 
 Thanks for reading!
