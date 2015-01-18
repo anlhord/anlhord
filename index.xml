@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go Lad News</title>
+    <link>http://anlhord.github.io/</link>
+    <description>Recent content on Go Lad News</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+    
+    <lastBuildDate>Sun, 18 Jan 2015 20:56:26 CET</lastBuildDate>
+    <atom:link href="http://anlhord.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Workaround insanities in go stdlib and go 2.0 wishlist</title>
+      <link>http://anlhord.github.io/post/working_around_insanities_in_the_go_stdlib_and_missing_features_of_the_language/</link>
+      <pubDate>Sun, 18 Jan 2015 20:56:26 CET</pubDate>
+      
+      <guid>http://anlhord.github.io/post/working_around_insanities_in_the_go_stdlib_and_missing_features_of_the_language/</guid>
+      <description>&lt;p&gt;Working around  insanities in the go stdlib and&lt;/p&gt;
+
+&lt;p&gt;the go langis my favourite language. it is very suitable for user-space programming given the garbage collector. the design of the language is wonderful and the. my favourite things: garbage collector. built-in maps. the go keyword. data structures. closures. the receiver. . use of return valuses instead of pointer arguments. the error type. panic. the tests and benchmarks.
+easy profiling.
+coverage testing.
+.&lt;/p&gt;
+
+&lt;p&gt;gofmt.&lt;/p&gt;
+
+&lt;p&gt;gofmt.&lt;/p&gt;
+
+&lt;p&gt;capital letters
+const&lt;/p&gt;
+
+&lt;p&gt;sane integer covertions and sizes&lt;/p&gt;
+
+&lt;p&gt;sane overflows&lt;/p&gt;
+
+&lt;p&gt;slices&lt;/p&gt;
+
+&lt;p&gt;good standard library&lt;/p&gt;
+
+&lt;p&gt;language safety
+absence of junk ( exceptoons weird syntax symbols, curly braces
+the annoyances - missing package xxx, unused variable xxx .. simple-fx the compiler, fix code on commit.&lt;/p&gt;
+
+&lt;p&gt;the casts- are annoying but for a good reason-makes people think twice before using anything else than an int.&lt;/p&gt;
+
+&lt;p&gt;theeface trick. the best way currently to break the  only when i have a good resason for doing so..
+.&lt;/p&gt;
+
+&lt;p&gt;misuse of duck typing. when you see an interface  with methods like len, at, swap. take a guess what type would implement this . yes, people  or  things implementing this interface are goingtobeslices. so we  when some procedure takes this interface  its in fact meant  to be  usedfor slices.
+. so . so  this is okkay but an interface dispatch is not the best thing to do in a tight loop. so we would like to have a buillt-in  mechanism for . the mechanism to do this orrectly is actually possible and nice, but it needsachange in the golanguage. so it the current way of doing  doing this in the stdlib is not terribly bad. the bolierplate of len, swap, at methods is actually the insanity.&lt;/p&gt;
+
+&lt;p&gt;less? really?
+since almost forever, comparisons are done by substracting the elements. then you compare . this is the case in the c standard library and pretty much everywhere else.
+ the choice iof less is really unfortunate and leads to areally stupid double less to check for equality patternn. the boolean itself is asinggn that you&amp;rsquo;re doing something wrong, in fact using byte or int stead of a boolean everywhere is the best thing you can do. internally a boolean is a byte anyway.
+.&lt;/p&gt;
+
+&lt;p&gt;so we break th e type system&lt;/p&gt;
+
+&lt;p&gt;the eface swap trick is as follows. we swapt the . we cast the eface to unsafe pointer, then we copy the pointer to another eface.
+given that .
+we copy the eface with needed type, then we copy the source esafe pointer to dst esafe type.
+this effectively change sthe data reference  with different type.
+thisis best used to turn  slices into uint slices.
+it is alsonice to use this to turn a function getting pointers of any type to accepting pointers of any other type.&lt;/p&gt;
+
+&lt;p&gt;in the macrogenerics project, we&amp;rsquo;ve implemented the macrogenerics approach. we &amp;rsquo;re using th is eface trick to interface with existing go code.&lt;/p&gt;
+
+&lt;p&gt;reflection .&lt;/p&gt;
+
+&lt;p&gt;the only good things about reflection is the low performance and ugly syntax. this discourages people from using it unless absolutely necessarey and leads to a better code quality overall.
+in maccro generics project we use it minimally and mainly the slice heasder struct.&lt;/p&gt;
+
+&lt;p&gt;.
+go 2.0 wish list.&lt;/p&gt;
+
+&lt;p&gt;safe voidpointer andvoidslice.
+strided slice.&lt;/p&gt;
+
+&lt;p&gt;strided slice. the need for strided slice comes up here and there. the currently standard way to impplement a
+. the currently est way to
+ the current idiom is to pass stride int along with a slice.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About Go Lad News</title>
+      <link>http://anlhord.github.io/about/</link>
+      <pubDate>Sun, 18 Jan 2015 20:55:26 CET</pubDate>
+      
+      <guid>http://anlhord.github.io/about/</guid>
+      <description>&lt;p&gt;Opinions expressed are solely my own and published in the hope they are useful.
+All criticism/review is meant to be constructive.
+Copyrighted materials in quotes, code snippets, images are copyrighted by the respective authors.
+All original code is provided under version 2 of the GNU Public License (GPLv2), unless otherwise noted.&lt;/p&gt;
+
+&lt;p&gt;The Go gopher logo was designed &lt;a href=&#34;http://reneefrench.blogspot.com/&#34;&gt;by Renée French&lt;/a&gt; and is provided under the &lt;a href=&#34;http://creativecommons.org/licenses/by/3.0/&#34;&gt;Creative Commons Attribution 3.0 license&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

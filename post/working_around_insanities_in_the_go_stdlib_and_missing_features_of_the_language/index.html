@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Workaround insanities in go stdlib and go 2.0 wishlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link href="" rel="alternate" type="application/rss+xml" title="Go Lad News" />
+  <link href="http://anlhord.github.io/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://anlhord.github.io/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p class="navbar-brand">Go Lad News</p>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          <li><a href="http://anlhord.github.io/post/">Posts</a></li>
+          <li><a href="http://anlhord.github.io/about/">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+	<div class="sidebar-block">
+	<div class="sidebar-brand"><a href="http://anlhord.github.io/"><h1 class="brand">Go Lad News</h1></a><h3></h3></div>
+
+          <hr />
+
+        <ul>
+          <li><a href="http://anlhord.github.io/post/">Posts</a></li>
+          <li><a href="http://anlhord.github.io/about/">About</a></li>
+
+       </ul>
+
+          <hr />
+
+          <ul id="social-wrapper">
+           
+           
+           
+           
+         </ul>
+
+     </div>
+     </div>
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Workaround insanities in go stdlib and go 2.0 wishlist</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2015-01-18</small></p> <hr/>
+   <div class="post">
+     <p>Working around  insanities in the go stdlib and</p>
+
+<p>the go langis my favourite language. it is very suitable for user-space programming given the garbage collector. the design of the language is wonderful and the. my favourite things: garbage collector. built-in maps. the go keyword. data structures. closures. the receiver. . use of return valuses instead of pointer arguments. the error type. panic. the tests and benchmarks.
+easy profiling.
+coverage testing.
+.</p>
+
+<p>gofmt.</p>
+
+<p>gofmt.</p>
+
+<p>capital letters
+const</p>
+
+<p>sane integer covertions and sizes</p>
+
+<p>sane overflows</p>
+
+<p>slices</p>
+
+<p>good standard library</p>
+
+<p>language safety
+absence of junk ( exceptoons weird syntax symbols, curly braces
+the annoyances - missing package xxx, unused variable xxx .. simple-fx the compiler, fix code on commit.</p>
+
+<p>the casts- are annoying but for a good reason-makes people think twice before using anything else than an int.</p>
+
+<p>theeface trick. the best way currently to break the  only when i have a good resason for doing so..
+.</p>
+
+<p>misuse of duck typing. when you see an interface  with methods like len, at, swap. take a guess what type would implement this . yes, people  or  things implementing this interface are goingtobeslices. so we  when some procedure takes this interface  its in fact meant  to be  usedfor slices.
+. so . so  this is okkay but an interface dispatch is not the best thing to do in a tight loop. so we would like to have a buillt-in  mechanism for . the mechanism to do this orrectly is actually possible and nice, but it needsachange in the golanguage. so it the current way of doing  doing this in the stdlib is not terribly bad. the bolierplate of len, swap, at methods is actually the insanity.</p>
+
+<p>less? really?
+since almost forever, comparisons are done by substracting the elements. then you compare . this is the case in the c standard library and pretty much everywhere else.
+ the choice iof less is really unfortunate and leads to areally stupid double less to check for equality patternn. the boolean itself is asinggn that you&rsquo;re doing something wrong, in fact using byte or int stead of a boolean everywhere is the best thing you can do. internally a boolean is a byte anyway.
+.</p>
+
+<p>so we break th e type system</p>
+
+<p>the eface swap trick is as follows. we swapt the . we cast the eface to unsafe pointer, then we copy the pointer to another eface.
+given that .
+we copy the eface with needed type, then we copy the source esafe pointer to dst esafe type.
+this effectively change sthe data reference  with different type.
+thisis best used to turn  slices into uint slices.
+it is alsonice to use this to turn a function getting pointers of any type to accepting pointers of any other type.</p>
+
+<p>in the macrogenerics project, we&rsquo;ve implemented the macrogenerics approach. we &rsquo;re using th is eface trick to interface with existing go code.</p>
+
+<p>reflection .</p>
+
+<p>the only good things about reflection is the low performance and ugly syntax. this discourages people from using it unless absolutely necessarey and leads to a better code quality overall.
+in maccro generics project we use it minimally and mainly the slice heasder struct.</p>
+
+<p>.
+go 2.0 wish list.</p>
+
+<p>safe voidpointer andvoidslice.
+strided slice.</p>
+
+<p>strided slice. the need for strided slice comes up here and there. the currently standard way to impplement a
+. the currently est way to
+ the current idiom is to pass stride int along with a slice.</p>
+
+   </div>
+ </div>
+
+
+ <a href="https://twitter.com/share" class="twitter-share-button " data-size="small" data-count="none">Tweet</a>
+ <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+ <ul class="pager">
+     
+      &nbsp;<li class="next"><a href="http://anlhord.github.io/about/"> About Go Lad News</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; . All rights reserved. </p>
+    </footer>
+
+</div>
+
+ 
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+ 
+</body>
+</html>
+
