@@ -7,7 +7,7 @@ body
   background-color:#f0f0f0;
   width:100%;
   border-top:solid #aeaee2;
-  border-width:4px
+  border-width:4px;
 }
 
 h1,h2,h3,h4,h5,h6
@@ -93,7 +93,8 @@ p
   margin-left:-250px;
   left:250px;
   width:250px;
-  background:#f8f8f8;
+	background-color: #ffffff ;
+
   position:fixed;
   height:100%;
   overflow-y:auto;
@@ -106,8 +107,12 @@ p
 
 .sidebar-block
 {
+	background: #0055aa url( "http://i.imgur.com/xReUMOu.gif") no-repeat right top;
   width:250px;
-  list-style:none;
+	height: 100%; 
+    overflow:hidden; /*added this*/
+
+ list-style:none;
   margin:0;
   padding:0;
 }
@@ -126,15 +131,26 @@ p
   text-indent:40px;
   font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
   font-weight:200;
-  color:#9c9c9c;
-  text-shadow:1px 1px #fff
+
+  color:#fff;
+  text-shadow:1px 1px #000;
+
 }
 
 .sidebar-block ul li a
 {
-  color:#999;
+  color:#fff;
   display:block;
   text-decoration:none
+}
+hr {
+width: 90%;
+height: 1px;
+margin-left: auto;
+margin-right: auto;
+background-color:#000;
+color:#000;
+border: 0 none;
 }
 
 .sidebar-block ul li a:hover
@@ -156,8 +172,8 @@ display: block;
 margin: 0;
 padding: 0 auto;
 border: 0;
-text-align:center;
-
+text-align:left;
+min-height: 60px;
   font-size:20px
 }
 
@@ -178,11 +194,15 @@ text-align:center;
 
 .brand
 {
-  font-weight:800;
-  color:#6c7077;
+  font-weight:700;
+  color:#ffffff;
   font-family:"Helvetica Neue", helvetica, "Open Sans",sans-serif;
   font-size:1.4em;
+padding: 0 30% 0 03%;
+	text-align: center;
+/*
   text-shadow:1px 1px #fff
+*/
 }
 
 .brand:hover
@@ -482,7 +502,9 @@ time
   -moz-box-shadow:inset 0 -10px 5px -2px rgba(119,119,119,0.35);
   -webkit-box-shadow:inset 0 -10px 5px -2px rgba(119,119,119,0.35);
   border-bottom:solid 1px #fff;
+/*
   background-image:url(http://lorempixel.com/900/200/);
+*/
   background-size: cover;
   z-index:-4;
   margin-top:-55px;
@@ -710,6 +732,8 @@ time
     border-right: 4px solid #d90006;
     border-top: none;
     left: 0px;
+
+	
 }
  .nav-toggle {
     display: ;
@@ -737,6 +761,8 @@ time
 }
 
 }
+
+
 
 @media screen and (max-width: 500px) {
   #welcome-greeting h2 {
