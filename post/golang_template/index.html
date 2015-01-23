@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Creating a google app engine aerospike application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link href="" rel="alternate" type="application/rss+xml" title="Go Lad News" />
+  <link href="http://anlhord.github.io/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://anlhord.github.io/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p class="navbar-brand">Go Lad News</p>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          <li><a href="http://anlhord.github.io/post/">Posts</a></li>
+          <li><a href="http://anlhord.github.io/about/">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+	<div class="sidebar-block">
+	<div class="sidebar-brand"><a href="http://anlhord.github.io/"><h1 class="brand">Go Lad News</h1></a><h3></h3></div>
+
+          <hr />
+
+        <ul>
+          <li><a href="http://anlhord.github.io/post/">Posts</a></li>
+          <li><a href="http://anlhord.github.io/about/">About</a></li>
+
+       </ul>
+
+          <hr />
+
+          <ul id="social-wrapper">
+           
+           
+           
+           
+         </ul>
+
+     </div>
+     </div>
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Creating a google app engine aerospike application</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2015-01-19</small></p> <hr/>
+   <div class="post">
+     <p>We can try redering some html/template with our app.</p>
+
+<p><a href="https://golang.org/doc/articles/wiki/#tmp_6">Writing Web Applications.</a></p>
+
+<p>First, we must add html/template to the list of imports.</p>
+
+<p>Setting up templating was done by this function:</p>
+
+<p>This is how to serve a static content from the google app engine:</p>
+
+<pre><code>handlers:
+- url: /assets
+  static_dir: static
+
+- url: /.*
+  script: _go_app
+</code></pre>
+
+<p>We serve stuff from the directory <em>static</em> to the url <a href="http://example.com/assets/img/x.png">http://example.com/assets/img/x.png</a></p>
+
+<p>Fun with aerospike.</p>
+
+<p><a href="http://lynnlangit.com/2014/06/24/how-to-installing-aerospikedb-on-google-compute-engine/">this blog post has the setup guide</a></p>
+
+<p>Our main goal is to funnel the queries from the front page to the aerospike
+database. The struct will be ID, question, price, asker, sol id, sol bool</p>
+
+<p>The aerospike deployed by click to deploy. It also provides the tunnel option
+to the amc (aerospike management console). Then connect via <a href="http://localhost:8081/">http://localhost:8081/</a></p>
+
+<p>Created a namespace called qa</p>
+
+<pre><code>namespace qa {
+        replication-factor 2
+        memory-size 4G
+
+	high-water-memory-pct 60
+	high-water-disk-pct 50
+	stop-writes-pct 90
+
+        default-ttl 0 # 30 days, use 0 to never expire/evict.
+
+
+        ldt-enabled true
+
+        storage-engine device {
+               file /opt/aerospike/data/qa.dat
+               filesize 16G
+               # See http://discuss.aerospike.com/t/aerospike-doesnt-work-with-local-ssd-disks-at-gce/497/4
+               disable-odirect true
+               data-in-memory true # Store data in memory in addition to fil
+       }
+}
+</code></pre>
+
+<p>there&rsquo;s a language called aql. but we will use the cli directly.</p>
+
+<pre><code>cli -n qa -s q -o set -k &quot;best blog&quot; -b pay -v 10
+cli -n qa -s q -o set -k &quot;best blog&quot; -b asker -v 0
+cli -n qa -s a -o set -k  -b asker -v &quot;http://go.lad.nu/&quot;
+</code></pre>
+
+   </div>
+ </div>
+
+
+ <a href="https://twitter.com/share" class="twitter-share-button " data-size="small" data-count="none">Tweet</a>
+ <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://anlhord.github.io/post/goversion_dep/"> Package requires Go 1.2</a></li>
+      &nbsp;<li class="next"><a href="http://anlhord.github.io/post/timing_a_function/"> Timing a function using defer</a></li>
+</ul>
+<div class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+
+        var disqus_shortname = 'golad';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+</div>
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; . All rights reserved. </p>
+    </footer>
+
+</div>
+ 
+    <script type="text/javascript">
+    var disqus_shortname = 'golad';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+ 
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+ 
+</body>
+</html>
+
