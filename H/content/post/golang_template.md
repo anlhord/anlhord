@@ -34,3 +34,11 @@ On google app engine onecan deploy in a very simple
 goapp deploy -oauth
 appcfg.py --oauth2 rollback .
 ```
+
+The Google Cloud Datastore is “just” another NoSQL/NearSQL solution and can
+be replaced by stacks such as MongoDB; memcache is memcache; MySQL can
+obviously replace Google Cloud SQL; and the language
+containers are mostly forward compatible with other containers. Significant
+portions of the client environment, such as NDB, are open sourced
+by us already. When we add new building blocks like the Go language, we
+open source the whole language.
