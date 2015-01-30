@@ -41,3 +41,24 @@ mysql --host=x.x.x.x  --port=3306 --user=root --password
 ```
 
 Now feel free to make the databases you need.
+
+Ok what about connecting from localhost goapp serve to google cloud sql. Simple.
+Set a root password either from the gui or cli. In gui click the instance
+and click an access control tab. from there u can set a root password.
+Also give access  [http://myip.dk](to your ip). Also create a database.
+Now use the library:
+```
+	_ "github.com/go-sql-driver/mysql"
+```
+
+Use a login string like this:
+```
+		c = "root:PASSWROD@tcp(IP:PORT)/DATABASE"
+```
+Now. On the gae, use a different login string.
+
+```
+root:@cloudsql(PROJECTID:DBID)/db
+```
+
+
